@@ -11,6 +11,7 @@ parameters:
 
 - name: CMake_hip_flags
   type: string
+  default: ''
 
 jobs:
 - job: wheels_python_${{ replace(parameters.PythonVersion,'.','_') }}_rocm_${{ replace(parameters.RocmVersion,'.','_') }}_${{ parameters.BuildConfig }}
