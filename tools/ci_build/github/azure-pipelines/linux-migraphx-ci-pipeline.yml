@@ -49,6 +49,7 @@ jobs:
               --config Release \
               --cmake_extra_defines \
                 CMAKE_HIP_COMPILER=/opt/rocm/llvm/bin/clang++ \
+                CMAKE_HIP_FLAGS="-Wno-deprecated-builtins" \
               --mpi_home /opt/ompi \
               --use_migraphx \
               --rocm_version=$(RocmVersion) \
