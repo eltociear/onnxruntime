@@ -9,6 +9,9 @@ parameters:
   type: string
   default: 'Release'
 
+- name: CMake_hip_flags
+  type: string
+
 jobs:
 - job: wheels_python_${{ replace(parameters.PythonVersion,'.','_') }}_rocm_${{ replace(parameters.RocmVersion,'.','_') }}_${{ parameters.BuildConfig }}
   workspace:
@@ -91,6 +94,7 @@ jobs:
               --cmake_extra_defines \
                 CMAKE_HIP_COMPILER=/opt/rocm/llvm/bin/clang++ \
                 onnxruntime_BUILD_UNIT_TESTS=OFF \
+                CMAKE_HIP_FLAGS="${{ parameters.CMake_hip_flags }}" \
               --enable_training_torch_interop \
               ${{ variables['EnableProfiling'] }}
       workingDirectory: $(Build.SourcesDirectory)
